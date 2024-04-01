@@ -19,6 +19,9 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+    // https://mvnrepository.com/artifact/org.openpnp/opencv
+    implementation files("opencv-490.jar");
+
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
