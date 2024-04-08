@@ -1,10 +1,17 @@
 package localizer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.objdetect.DetectorParameters;
+import org.opencv.objdetect.Dictionary;
+import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
+
+import org.opencv.objdetect.ArucoDetector;
+
 
 
 
@@ -43,12 +50,21 @@ public class App {
     }
 
     public void frameLoop() {
+        Dictionary dictionary = Objdetect.getPredefinedDictionary(Objdetect.DICT_APRILTAG_36h11);
         while(true) {
             // loop over all cameras
             for(VideoCapture camera : cameras) {
                 Mat frame = new Mat();
                 camera.read(frame);
                 
+                List<Mat> corners = new ArrayList<Mat>();
+                Mat ids = new Mat();
+
+                DetectorParameters parameters = new DetectorParameters();
+                ArucoDetector detector = new ArucoDetector(dictionary);
+                detector.detectMarkers(frame,corners,ids);
+                
+
                 if(frame.empty()) {
                     System.err.println("ERROR: CAMERA FRAME NOT RECIEVED.");
                 }
