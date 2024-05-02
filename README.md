@@ -1,2 +1,2 @@
 # localizer
-3d apriltag localization for an orange pi on linux
+3d apriltag localization with ambiguity elimination
